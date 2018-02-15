@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.algaworks.cobranca.model.Titulo;
 import com.algaworks.cobranca.repository.Titulos;
@@ -22,8 +23,10 @@ public class TituloController {
 	}
 
 	@PostMapping
-	public String salvar(Titulo titulo) {
+	public ModelAndView salvar(Titulo titulo) {
 		titulos.save(titulo);
-		return "CadastroTitulo";
+		ModelAndView mv = new ModelAndView("CadastroTitulo");
+		mv.addObject("mensagem", "Título salvo com sucesso!");
+		return mv;
 	}
 }
