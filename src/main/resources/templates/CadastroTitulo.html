@@ -4,8 +4,11 @@
 <head>
 <meta charset="UTF-8" />
 <title>Cadastro de título</title>
-<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
-<link rel="stylesheet" type="text/css" href="/css/style.css" />
+<link rel="stylesheet" type="text/css"
+	href="../static/css/bootstrap.min.css"
+	th:href="@{/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css" href="../static/css/style.css"
+	th:href="@{/css/style.css}" />
 </head>
 <body>
 
@@ -13,7 +16,8 @@
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<a class="navbar-brand" href="#"> <img alt="AlgaWorks"
-					src="/images/logo-algaworks.png" />
+					src="../static/images/logo-algaworks.png"
+					th:src="@{/images/logo-algaworks.png}" />
 				</a>
 			</div>
 		</div>
@@ -21,7 +25,8 @@
 
 
 	<form class="form-horizontal" method="POST" action="/titulos">
-		<div class="alert alert-success alert-dismissible" role="alert" th:if="${!#strings.isEmpty(mensagem)}">
+		<div class="alert alert-success alert-dismissible" role="alert"
+			th:if="${!#strings.isEmpty(mensagem)}">
 			<button type="button" class="close" data-dismiss="alert"
 				aria-label="Close">
 				<span aria-hidden="true">&times;</span>
@@ -58,8 +63,9 @@
 					<label for="status" class="col-sm-2 control-label">Status</label>
 					<div class="col-sm-2">
 						<select class="form-control" id="status" name="status">
-							<option value="PENDENTE">Pendente</option>
-							<option value="RECEBIDO">Recebido</option>
+							<option th:each="status: ${todosStatusTitulo}"
+								th:value="${status}" th:text="${status.descricao}">Pendente</option>
+							<option th:if="${#lists.isEmpty(todosStatusTitulo)}">Recebido</option>
 						</select>
 					</div>
 				</div>
@@ -72,7 +78,9 @@
 		</div>
 	</form>
 
-	<script type="text/javascript" src="/js/jquery.min.js"></script>
-	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../static/js/jquery.min.js"
+		th:src="@{/js/jquery.min.js}"></script>
+	<script type="text/javascript" src="../static//js/bootstrap.min.js"
+		th:src="@{/js/bootstrap.min.js}"></script>
 </body>
 </html>
