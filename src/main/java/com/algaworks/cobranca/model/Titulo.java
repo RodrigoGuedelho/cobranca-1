@@ -11,6 +11,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
@@ -19,14 +24,24 @@ import org.springframework.format.annotation.NumberFormat;
 public class Titulo {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
+
+	@NotBlank(message = "Descrição é obrigatório")
+	@Size(max = 60, message = "A Descrição não pode conter mais de 60 caracteres")
 	private String descricao;
-	@DateTimeFormat(pattern="dd/MM/yyyy")
+
+	@NotNull(message = "Data de vencimento é obrigatório")
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Temporal(TemporalType.DATE)
 	private Date dataVencimento;
-	@NumberFormat(pattern="#,##0.00")
+
+	@NotNull(message = "Valor é obrigatório")
+	@DecimalMin(value="0.01", message="Valor não pode ser menor que 0,01")
+	@DecimalMax(value="9999999.99", message="Valor não pode ser maior que 9.999.999,99")
+	@NumberFormat(pattern = "#,##0.00")
 	private BigDecimal valor;
+
 	@Enumerated(EnumType.STRING)
 	private StatusTitulo status;
 
@@ -78,6 +93,10 @@ public class Titulo {
 		return result;
 	}
 
+	public boolean isPendente() {
+		return StatusTitulo.PENDENTE.equals(this.status);
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -94,7 +113,5 @@ public class Titulo {
 			return false;
 		return true;
 	}
-	
-	
 
 }

@@ -1,28 +1,21 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org"
+	xmlns:th="https://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
-<meta charset="UTF-8" />
-<title>Cobrança</title>
-<link rel="stylesheet" type="text/css"
-	href="../static/css/bootstrap.min.css"
-	th:href="@{/css/bootstrap.min.css}" />
-<link rel="stylesheet" type="text/css" href="../static/css/style.css"
-	th:href="@{/css/style.css}" />
+	<meta charset="UTF-8" />
+	<title>Cobrança</title>
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="/css/style.css" />
 </head>
 <body>
-	
-	<header layout:include="Cabecalho">
-	</header>
+	<header layout:insert="Cabecalho"></header>
 
 	<section layout:fragment="conteudo">
-		<p>Conteúdo principal</p>
+		<p>Conteudo</p>
 	</section>
 
-	<script type="text/javascript" src="../static/js/jquery.min.js"
-		th:src="@{/js/jquery.min.js}"></script>
-	<script type="text/javascript" src="../static//js/bootstrap.min.js"
-		th:src="@{/js/bootstrap.min.js}"></script>
+	<script src="/js/jquery.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
 </body>
 </html>

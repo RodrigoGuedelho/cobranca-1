@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org"
+	xmlns:th="https://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorator="LayoutPadrao">
+	layout:decorate="LayoutPadrao">
 <head>
-<title>Pesquisa de título</title>
+<title>Pesquisa de títulos</title>
 </head>
+
 <section layout:fragment="conteudo">
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<div class="clearfix">
-				<h1 class="panel-title aw-titulo-panel">Pesquisa títulos</h1>
-				<a class="btn btn-link aw-link-panel" href="/titulos/novo">Novo título</a>
+				<h1 class="panel-title aw-titulo-panel">Pesquisa de títulos</h1>
+				<a class="btn btn-link aw-link-panel" href="/titulos/novo">Novo
+					título</a>
 			</div>
 		</div>
 		<div class="panel-body">
@@ -19,16 +21,27 @@
 				<thead>
 					<tr>
 						<th class="text-center col-md-1">#</th>
-						<th>Descrição</th>
+						<th>Descricao</th>
 						<th class="text-center col-md-2">Data de vencimento</th>
 						<th class="text-right col-md-2">Valor</th>
 						<th class="text-center col-md-2">Status</th>
-						<th class="text-center col-md-1"></th>
+						<th class="col-md-1"></th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
+					<tr th:if="${#lists.isEmpty(titulos)}">
 						<td colspan="6">Nenhum título foi encontrado</td>
+					</tr>
+					<tr th:each="titulo : ${titulos}">
+						<td th:text="${titulo.codigo}" class="text-center">1</td>
+						<td th:text="${titulo.descricao}">Condomínio Apto 201</td>
+						<td th:text="${{titulo.dataVencimento}}" class="text-center">10/10/2016</td>
+						<td th:text="|R$ ${{titulo.valor}}|" class="text-right">R$
+							301,89</td>
+						<td class="text-center"><span class="label"
+							th:classappend="${titulo.pendente ? 'label-danger' : 'label-success'}"
+							th:text="${titulo.status.descricao}"></span></td>
+						<td></td>
 					</tr>
 				</tbody>
 			</table>

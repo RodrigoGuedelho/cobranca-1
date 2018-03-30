@@ -16,7 +16,7 @@ public class CobrancaApplication {
 	}
 	
 	@Bean
-	public LocaleResolver localeResolver(){
+	public LocaleResolver localeResolver() {
 		return new FixedLocaleResolver(new Locale("pt", "BR"));
 	}
 }
