@@ -8,6 +8,7 @@
 </head>
 
 <section layout:fragment="conteudo">
+
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<div class="clearfix">
@@ -41,7 +42,10 @@
 						<td class="text-center"><span class="label"
 							th:classappend="${titulo.pendente ? 'label-danger' : 'label-success'}"
 							th:text="${titulo.status.descricao}"></span></td>
-						<td></td>
+						<td class="text-center"><a class="btn btn-link btn-xs"
+							th:href="@{/titulos/{codigo}(codigo=${titulo.codigo})}"> <span
+								class="glyphicon glyphicon-pencil"></span>
+						</a></td>
 					</tr>
 				</tbody>
 			</table>
