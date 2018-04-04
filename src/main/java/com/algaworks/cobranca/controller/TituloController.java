@@ -2,12 +2,12 @@ package com.algaworks.cobranca.controller;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -56,10 +56,17 @@ public class TituloController {
 
 	@GetMapping("{codigo}")
 	public ModelAndView edicao(@PathVariable("codigo") Titulo titulo) {
-		//Optional<Titulo> titulo = titulos.findById(codigo);
+		// Optional<Titulo> titulo = titulos.findById(codigo);
 		ModelAndView mv = new ModelAndView(CADASTRO_VIEW);
 		mv.addObject("titulo", titulo);
 		return mv;
+	}
+
+	@DeleteMapping("{codigo}")
+	public String excluir(@PathVariable Long codigo, RedirectAttributes attributes) {
+		titulos.deleteById(codigo);
+		attributes.addFlashAttribute("mensagem", "Título excluído com sucesso!");
+		return "redirect:/titulos";
 	}
 
 	@ModelAttribute("todosStatusTitulos")
