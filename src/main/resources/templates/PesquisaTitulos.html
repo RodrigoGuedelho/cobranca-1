@@ -41,9 +41,11 @@
 						<td th:text="${{titulo.dataVencimento}}" class="text-center">10/10/2016</td>
 						<td th:text="|R$ ${{titulo.valor}}|" class="text-right">R$
 							301,89</td>
-						<td class="text-center"><span class="label"
-							th:classappend="${titulo.pendente ? 'label-danger' : 'label-success'}"
-							th:text="${titulo.status.descricao}"></span></td>
+						<td class="text-center" th:attr="data-role=${titulo.codigo}">
+							<span class="label"
+								th:classappend="${titulo.pendente ? 'label-danger' : 'label-success'}"
+								th:text="${titulo.status.descricao}"></span>
+						</td>
 						<td class="text-center">
 							<a class="btn btn-link btn-xs"
 								th:href="@{/titulos/{codigo}(codigo=${titulo.codigo})}"
@@ -55,6 +57,12 @@
 								th:attr="data-codigo=${titulo.codigo}, data-descricao=${titulo.descricao}"
 								title="Excluir" rel="tooltip" data-placement="top">
 								<span class="glyphicon glyphicon-remove"></span>
+							</a>
+							<a class="btn btn-link btn-xs js-atualizar-status" title="Receber" rel="tooltip"
+								 data-placement="top" th:if="${titulo.pendente}"
+								 th:attr="data-codigo=${titulo.codigo}"
+								 th:href="@{/titulos/{codigo}/receber(codigo=${titulo.codigo})}">
+								<span class="glyphicon glyphicon-check"></span>
 							</a>
 						</td>
 					</tr>
