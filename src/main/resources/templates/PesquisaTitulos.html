@@ -20,11 +20,11 @@
 			</div>
 		</div>
 		<div class="panel-body">
-			<form method="GET" class="form-horizontal">
+			<form method="GET" class="form-horizontal" th:object="${filtro}">
 				<div class="form-group">
 					<div class="col-sm-4">
 						<div class="input-group">
-							<input class="form-control" autofocus="autofocus"
+							<input class="form-control" autofocus="autofocus" th:field="*{descricao}"
 								placeholder="Qual título você está procurando?"></input>
 							<span class="input-group-btn">
 								<button type="submit" class="btn btn-default">
