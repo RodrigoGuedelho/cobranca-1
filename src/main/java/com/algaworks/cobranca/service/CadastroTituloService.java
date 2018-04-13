@@ -38,8 +38,7 @@ public class CadastroTituloService {
 
 	public List<Titulo> filtrar(TituloFilter filtro) {
 		String descricao = filtro.getDescricao() == null ? "%" : filtro.getDescricao();
-
+		
 		return titulos.findByDescricaoContaining(descricao);
-
 	}
 }

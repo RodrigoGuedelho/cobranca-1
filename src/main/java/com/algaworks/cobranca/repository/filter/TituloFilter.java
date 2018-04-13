@@ -11,5 +11,4 @@ public class TituloFilter {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-
 }

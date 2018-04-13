@@ -90,4 +90,5 @@ public class TituloController {
 	public List<StatusTitulo> todosStatusTitulos() {
 		return Arrays.asList(StatusTitulo.values());
 	}
+
 }
