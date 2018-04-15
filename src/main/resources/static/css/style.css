@@ -3,13 +3,13 @@
 }
 
 .panel-default {
-	margin-left: 10px;
-	margin-right: 10px;
+	margin-left: 5px;
+	margin-right: 5px;
 }
 
 .alert {
-	margin-left: 10px;
-	margin-right: 10px;
+	margin-left: 5px;
+	margin-right: 5x;
 }
 
 .aw-link-panel {
@@ -21,4 +21,17 @@
 .aw-titulo-panel {
 	float: left;
 	padding-top: 2px;
+}
+
+/* Tela grande */
+@media (min-width: 768px){
+	.panel-default {
+		margin-left: 10px;
+		margin-right: 10px;
+	}
+	
+	.alert {
+		margin-left: 10px;
+		margin-right: 10px;
+	}
 }
